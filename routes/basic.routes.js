@@ -4,8 +4,8 @@ const BasicRouter = require("express").Router()
 const {noUpload, uploadFile} = require("./middleware")
 
 
-BasicRouter.get('/', BasicController.loginPage)
-BasicRouter.get('/Login', BasicController.homePage)
+BasicRouter.get('/', BasicController.homePage)
+BasicRouter.get('/Login', BasicController.loginPage)
 BasicRouter.get('/new-registration', BasicController.registrationPage)
 BasicRouter.get('/logout', BasicController.logout)
 
