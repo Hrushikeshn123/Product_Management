@@ -4,9 +4,9 @@ const BasicRouter = require("express").Router()
 const {noUpload, uploadFile} = require("./middleware")
 
 
-BasicRouter.get('/', BasicController.homePage)
-BasicRouter.get('/Login', BasicController.loginPage)
-BasicRouter.get('/new-registration', BasicController.registrationPage)
+BasicRouter.get('/dashboard', BasicController.homePage)
+BasicRouter.get('/login', BasicController.loginPage)
+BasicRouter.get('/', BasicController.registrationPage)
 BasicRouter.get('/logout', BasicController.logout)
 
 BasicRouter.get('/get-product',BasicController.getProduct)
