@@ -2,9 +2,10 @@ const ProductModel = require("../model/product.model")
 const UserModel = require("../model/user.model")
 
 const BasicController = {
-    homePage(request,response){
+
+  homePage(request,response){
         if(request.session.login == undefined){
-            response.redirect("/")
+            response.redirect("/dashboard")
             return false
         }
      response.render("dashboard",{
@@ -21,7 +22,7 @@ const BasicController = {
     loginPage(request, response){
 
         if(request.session.login !== undefined){
-            response.redirect("/")
+            response.redirect("/dashboard")
             return false
         }
 
@@ -35,7 +36,7 @@ const BasicController = {
 
     registrationPage(request, response){
         if(request.session.login !== undefined){
-            response.redirect("/")
+            response.redirect("/dashboard")
             return false
         }
         let message = request.session.message !== undefined ? request.session.message : ""
@@ -75,7 +76,7 @@ const BasicController = {
              }else{
              request.session.message="Unable to save user,try again"
              request.session.newUser ={...data}
-             response.redirect("/new-registration")
+             response.redirect("/")
 
             }
         }
@@ -83,7 +84,7 @@ const BasicController = {
     }catch(error){
         request.session.message="Unable to save user,try again"
         request.session.newUser ={...data}
-        response.redirect("/new-registration")
+        response.redirect("/")
         
       }
       
@@ -108,7 +109,7 @@ const BasicController = {
           )
           if(user){
             request.session.login={user}
-            response.redirect("/")
+            response.redirect("/dashboard")
           }else{
             request.session.message="Username or paswword is erong ,try again" 
             response.redirect("/login") 
