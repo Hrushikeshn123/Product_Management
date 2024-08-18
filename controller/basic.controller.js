@@ -2,10 +2,9 @@ const ProductModel = require("../model/product.model")
 const UserModel = require("../model/user.model")
 
 const BasicController = {
-
-  homePage(request,response){
+    homePage(request,response){
         if(request.session.login == undefined){
-            response.redirect("/dashboard")
+            response.redirect("/Login")
             return false
         }
      response.render("dashboard",{
@@ -16,13 +15,13 @@ const BasicController = {
 
     logout(request,response){
     delete request.session.login
-    response.redirect("/login")
+    response.redirect("/")
     },
 
     loginPage(request, response){
 
         if(request.session.login !== undefined){
-            response.redirect("/dashboard")
+            response.redirect("/Login")
             return false
         }
 
@@ -36,7 +35,7 @@ const BasicController = {
 
     registrationPage(request, response){
         if(request.session.login !== undefined){
-            response.redirect("/dashboard")
+            response.redirect("/Login")
             return false
         }
         let message = request.session.message !== undefined ? request.session.message : ""
@@ -72,11 +71,11 @@ const BasicController = {
      
              request.session.message="User registration done succesfully ,you can login now"
              request.session.newUser ={}
-             response.redirect("/login")
+             response.redirect("/")
              }else{
              request.session.message="Unable to save user,try again"
              request.session.newUser ={...data}
-             response.redirect("/")
+             response.redirect("/new-registration")
 
             }
         }
@@ -84,7 +83,7 @@ const BasicController = {
     }catch(error){
         request.session.message="Unable to save user,try again"
         request.session.newUser ={...data}
-        response.redirect("/")
+        response.redirect("/new-registration")
         
       }
       
@@ -109,14 +108,14 @@ const BasicController = {
           )
           if(user){
             request.session.login={user}
-            response.redirect("/dashboard")
+            response.redirect("/Login")
           }else{
             request.session.message="Username or paswword is erong ,try again" 
-            response.redirect("/login") 
+            response.redirect("/") 
           }
       }catch(error){
         request.session.message="something went wrong,try again" 
-        response.redirect("/login") 
+        response.redirect("/") 
       } 
       
     }, 
